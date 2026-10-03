@@ -1,0 +1,65 @@
+BUGS FIXED - Testbed-T1.0.0
+
+1. Bug: Incorrect ament_package declaration
+
+File:
+testbed_description/CMakeLists.txt
+
+Problem:
+The ament_package command was missing parentheses.
+
+Original:
+ament_package
+
+Fix:
+ament_package()
+
+Result:
+The package builds successfully with colcon.
+
+
+2. Bug: Incorrect map image path
+
+File:
+testbed_bringup/maps/testbed_world.yaml
+
+Problem:
+The YAML file referenced an invalid map image:
+
+wrong_path_testbed_world.pgm
+
+Fix:
+Changed the image path to:
+
+testbed_world.pgm
+
+Result:
+The map server successfully loads the Testbed world map.
+
+
+3. Navigation workflow implementation
+
+The starter repository did not contain the required
+testbed_navigation package.
+
+Fix:
+Created a new ROS 2 package:
+
+testbed_navigation
+
+Implemented:
+
+- map_loader.launch.py
+- localization.launch.py
+- navigation.launch.py
+- amcl_params.yaml
+- nav2_params.yaml
+- README.md
+
+The navigation stack was manually configured without using
+nav2_bringup.
+
+Test Result:
+NavigateToPose goal completed successfully with:
+
+Goal finished with status: SUCCEEDED
